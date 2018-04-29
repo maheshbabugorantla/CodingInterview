@@ -14,11 +14,11 @@ class TestMaxHeap(TestCase):
         self.strHeap1 = MaxHeap(dtype=str)
         self.strHeap2 = MaxHeap(dtype=str)
 
-        self.intHeap1.insert(1).insert(2).insert(3).insert(4).insert(5)
-        self.intHeap2.insert(10).insert(9).insert(8).insert(20).insert(21).insert(12)
+        self.intHeap1.createHeapFromList(keys=[1, 2, 3, 4, 5])
+        self.intHeap2.createHeapFromList(keys=[10, 9, 8, 20, 21, 12])
 
-        self.strHeap1.insert('Blah1').insert('Blah2').insert('Foo').insert('Bar')
-        self.strHeap2.insert('What').insert('does').insert('fox').insert('say')
+        self.strHeap1.createHeapFromList(keys=['Blah1', 'Blah2', 'Foo', 'Bar'])
+        self.strHeap2.createHeapFromList(keys=['What', 'does', 'fox', 'say'])
 
     def test_getSize(self):
         self.assertEqual(self.intHeap1.getSize(), 5)
@@ -46,6 +46,22 @@ class TestMaxHeap(TestCase):
 
         self.assertEqual(self.strHeap1.getMaxKey(), 'Foo1234')
         self.assertEqual(self.strHeap2.getMaxKey(), 'say')
+
+    def test_delMaxKey(self):
+        self.assertEqual(self.intHeap1.delMaxKey(), 5)
+        self.assertEqual(self.intHeap1.delMaxKey(), 4)
+        self.assertEqual(self.intHeap1.delMaxKey(), 3)
+        self.assertEqual(self.intHeap1.delMaxKey(), 2)
+        self.assertEqual(self.intHeap1.delMaxKey(), 1)
+        self.assertEqual(self.intHeap1.delMaxKey(), None)
+
+        self.assertEqual(self.intHeap2.delMaxKey(), 21)
+        self.assertEqual(self.intHeap2.delMaxKey(), 20)
+        self.assertEqual(self.intHeap2.delMaxKey(), 12)
+        self.assertEqual(self.intHeap2.delMaxKey(), 10)
+        self.assertEqual(self.intHeap2.delMaxKey(), 9)
+        self.assertEqual(self.intHeap2.delMaxKey(), 8)
+        self.assertEqual(self.intHeap2.delMaxKey(), None)
 
     def tearDown(self):
         del self.intHeap1
