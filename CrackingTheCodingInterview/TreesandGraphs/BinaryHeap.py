@@ -13,11 +13,34 @@ class MaxHeap:
         self._heap = [None]
         self._size = 0
 
-    # This percolates the Maximum Key
+    def getSize(self):
+        return self._size
     def _percDown(self, i):
         pass
 
+    def _percUp(self, i):
+        while i//2 > 0:
+            if self._heap[i] > self._heap[i//2]:
+                temp = self._heap[i]
+                self._heap[i] = self._heap[i//2]
+                self._heap[i//2] = temp
+            i = i//2
+
     def insert(self, key):
+        if not isinstance(key, self._type):
+            raise TypeError("'key' should be of type {}".format(self._type))
+    
+        self._heap.append(key)
+        self._size += 1
+        self._percUp(self._size)
+        return self
+
+    # Returns the Key with Maximum Value
+    def getMaxKey(self):
+        return self._heap[1]
+
+    # Creates heap from List of keys
+    def createHeapFromList(self, keys=None):
         pass
 
 class MinHeap:
@@ -87,3 +110,7 @@ class MinHeap:
             self._percDown(1)
             return minVal
         return None
+
+    # Creates a new heap from the list of keys
+    def createHeapFromList(self, keys=None):
+        pass
