@@ -63,6 +63,18 @@ class TestMaxHeap(TestCase):
         self.assertEqual(self.intHeap2.delMaxKey(), 8)
         self.assertEqual(self.intHeap2.delMaxKey(), None)
 
+        self.assertEqual(self.strHeap1.delMaxKey(), "Foo")
+        self.assertEqual(self.strHeap1.delMaxKey(), "Blah2")
+        self.assertEqual(self.strHeap1.delMaxKey(), "Blah1")
+        self.assertEqual(self.strHeap1.delMaxKey(), "Bar")
+        self.assertEqual(self.strHeap1.delMaxKey(), None)
+
+        self.assertEqual(self.strHeap2.delMaxKey(), "say")
+        self.assertEqual(self.strHeap2.delMaxKey(), "fox")
+        self.assertEqual(self.strHeap2.delMaxKey(), "does")
+        self.assertEqual(self.strHeap2.delMaxKey(), "What")
+        self.assertEqual(self.strHeap2.delMaxKey(), None)
+
     def tearDown(self):
         del self.intHeap1
         del self.intHeap2
